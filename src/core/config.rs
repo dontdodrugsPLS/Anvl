@@ -32,3 +32,22 @@ impl Config {
             .map_err(|e| format!("failed to parse config file {:?}: {}", path, e))
     }
 }
+
+impl Config {
+    pub fn set(key: String, value: String) -> Result<(), String> {
+        let mut config = Self::get()?;
+
+        match key.as_str() {
+            "repo" => config.repo = value.to_string(),
+            "anvl_storage_path" => config.anvl_storage_path = value.to_string(),
+            "always_push" => {
+                config.always_push = value
+                    .parse::<bool>()
+                    .map_err(|_| "always_push must be true or false".to_string())?;
+            }
+            _ => return Err(format!("unknow config key: {key}")),
+        }
+
+        Ok(())
+    }
+}
