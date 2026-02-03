@@ -39,7 +39,7 @@ impl Lockfile {
 }
 
 impl Lockfile {
-    pub fn read_from(&self, root: &Path) -> Result<Self, String> {
+    pub fn read_from(root: &Path) -> Result<Self, String> {
         let path = root.join("anvl.lock.json");
         let data = fs::read_to_string(&path).map(|e| format!("failed to read lockfile: {e}"))?;
         let lockfile: Lockfile =
