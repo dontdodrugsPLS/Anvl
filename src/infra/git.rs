@@ -24,3 +24,15 @@ fn run(args: &[&str], cwd: Option<&Path>) -> Result<String, String> {
 pub fn is_available() -> Result<(), String> {
     run(&["--version"], None).map(|_| ())
 }
+
+pub fn clone(repo_url: &str, dest: &Path) -> Result<(), String> {
+    run(
+        &[
+            "clone",
+            repo_url,
+            dest.to_str().ok_or("invalid destionation path")?,
+        ],
+        None,
+    )
+    .map(|_| ())
+}
