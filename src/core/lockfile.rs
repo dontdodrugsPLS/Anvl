@@ -45,6 +45,6 @@ impl Lockfile {
         let lockfile: Lockfile =
             serde_json::from_str(&data).map_err(|e| format!("invalid lockfile format: {e}"))?;
 
-        Ok(Lockfile)
+        Ok(lockfile)
     }
 }
