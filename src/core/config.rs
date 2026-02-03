@@ -17,7 +17,6 @@ impl Config {
 
         path.push("anvl");
         path.push("config.json");
-
         Ok(path)
     }
 }
@@ -47,7 +46,21 @@ impl Config {
             }
             _ => return Err(format!("unknow config key: {key}")),
         }
+        Ok(())
+    }
+}
 
+impl Config {
+    pub fn save(&self) -> Result<(), String> {
+        let path = Self::path()?;
+        if let Some(parent) = path.parent() {
+            fs::create_dir_all(parent)
+                .map_err(|e| format!("failed to create config directory: {e}"))?;
+        }
+        let json = serde_json::to_string_pretty(self)
+            .map_err(|e| format!("failed to serialize config: {e}"))?;
+
+        fs::write(&path, json).map_err(|e| format!("failed to write config file: {e}"))?;
         Ok(())
     }
 }
