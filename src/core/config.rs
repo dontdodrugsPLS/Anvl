@@ -66,6 +66,7 @@ impl Config {
             }
             _ => return Err(format!("unknow config key: {key}")),
         }
+        config.save()?;
         Ok(())
     }
 }
