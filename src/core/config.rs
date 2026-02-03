@@ -21,3 +21,14 @@ impl Config {
         Ok(path)
     }
 }
+
+impl Config {
+    pub fn get() -> Result<Self, String> {
+        let path = Self::path()?;
+        let json =
+            fs::read_to_string(&path).map_err(|e| format!("failed to read config file {e}"))?;
+
+        serde_json::from_str(&json)
+            .map_err(|e| format!("failed to parse config file {:?}: {}", path, e))
+    }
+}

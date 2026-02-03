@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use std::fs;
 use std::path::Path;
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -40,7 +41,7 @@ impl Lockfile {
 impl Lockfile {
     pub fn read_from(root: &Path) -> Result<Self, String> {
         let path = root.join("anvl.lock.json");
-        let data = fs::read_to_string(&path).map(|e| format!("failed to read lockfile: {e}"))?;
+        let data = fs::read_to_string(&path).map(|e| format!("failed to read lockfile: {e}"));
         let lockfile: Lockfile =
             serde_json::from_str(&data).map_err(|e| format!("invalid lockfile format: {e}"))?;
 
@@ -49,11 +50,11 @@ impl Lockfile {
 }
 
 impl Lockfile {
-    pub fn validate(&self) -> result<Self, String> {
-        if self.schema_version != 1 {
+    pub fn validate(&self) -> result<(), String> {
+        if self.lock_version != 1 {
             return Err(format!(
                 "unsupported lockfile schema version {}",
-                self.schema_version
+                self.lock_version
             ));
         }
         Ok(())
