@@ -1,7 +1,7 @@
 mod cli;
 mod commands;
 mod core;
-mod infra;
+mod utils;
 
 use clap::Parser;
 use cli::args::Args;
