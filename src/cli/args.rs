@@ -1,3 +1,4 @@
+use clap::ValueEnum;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
@@ -10,11 +11,10 @@ pub struct Args {
     pub command: Command,
 }
 
-#[derive(Subcommand)]
+#[derive(Subcommand, Debug)]
 pub enum Command {
     Init {
-        #[command(subcommand)]
-        kind: InitKindCommand,
+        kind: InitKind,
         name: String,
         #[arg(short = 'p', long)]
         push: bool,
@@ -40,24 +40,21 @@ pub enum Command {
     },
     Status,
     Doctor {
-        #[command(subcommand)]
-        cmd: DoctorCommand,
+        check: DoctorCheck,
     },
     List,
     Info {
         module: String,
     },
     Cache {
-        #[command(subcommand)]
-        cmd: CacheCommand,
+        action: CacheAction,
     },
     Config {
         #[command(subcommand)]
         cmd: Option<ConfigCommand>,
     },
     Create {
-        #[command(subcommand)]
-        kind: CreateKindCommand,
+        kind: CreateKind,
         path: String,
         #[arg(short = 'p', long)]
         push: bool,
@@ -71,32 +68,32 @@ pub enum Command {
     },
 }
 
-#[derive(Subcommand)]
-pub enum InitKindCommand {
+#[derive(ValueEnum, Clone, Debug)]
+pub enum InitKind {
     Lib,
     Bin,
 }
 
-#[derive(Subcommand)]
-pub enum CreateKindCommand {
+#[derive(ValueEnum, Clone, Debug)]
+pub enum CreateKind {
     C,
     H,
 }
 
-#[derive(Subcommand)]
-pub enum DoctorCommand {
+#[derive(ValueEnum, Clone, Debug)]
+pub enum DoctorCheck {
     Template,
     Project,
 }
 
-#[derive(Subcommand)]
+#[derive(Subcommand, Debug)]
 pub enum ConfigCommand {
     Get,
     Set { key: String, value: String },
 }
 
-#[derive(Subcommand)]
-pub enum CacheCommand {
+#[derive(ValueEnum, Clone, Debug)]
+pub enum CacheAction {
     Update,
     Clean,
 }
