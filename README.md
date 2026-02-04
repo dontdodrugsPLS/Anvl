@@ -17,3 +17,12 @@ C projects tend to repeat exactly the same problems:
 - With 2 to 4 weeks to deliver a project, often while juggling several projects at the same time, you can’t afford to lose hours setting up the same structure again and again.
 - Writing your own library is usually a good idea, but reusing it blindly isn’t. Most projects only need a few functions, and you still have to ensure that every reused feature respects the authorized functions defined by the subject.
 - Editing a Makefile isn’t hard, but it’s mental overhead. The cleaner solution is not having to even think about it at all.
+
+## What Anvl is not
+
+- Not a build system
+- Not a dependency resolver at compile time
+- Not a framework
+- Not a package manager that hides code
+
+It works with your existing workflow, not against it.
