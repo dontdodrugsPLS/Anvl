@@ -26,3 +26,25 @@ C projects tend to repeat exactly the same problems:
 - Not a package manager that hides code
 
 It works with your existing workflow, not against it.
+
+## Typical project creation workflow
+
+`anvl init bin my_project --push`
+  -> Fetch "bin" template from your Anvl repo and rename binary, include etc to "my_project"
+
+`anvl list`
+  -> List every available modules from your Anvl repo local cache.
+
+`anvl install io str vec --push`
+  -> Install "io", "str" and "vec" with all their dependencies from your Anvl repo to the current project
+
+`anvl create c:cli modules/cli/cli --push`
+  -> Create "cli.c" inside src/modules/cli using the "C" template named "cli" inside your Anvl repo.
+     Create "cli.c" inside tests/modules/cli using the global test template or if defined the personalizated one.
+     Automatically add both file inside compilation Makefile, ready to use.
+
+> [!INFO]
+>
+> As you can see, some commands have the --push option, it simply mean that Anvl will automatically push concerned changes on your repo. 
+>
+> This is only the visible part of the iceberg to learn more about it, refere too : ...
