@@ -10,7 +10,7 @@ It focuses on three things:
 
 > No magic. No code generators. Only automation and structure.
 
-### Why did I even create Anvl ?
+## Why did I even create Anvl ?
 
 C projects tend to repeat exactly the same problems
 
