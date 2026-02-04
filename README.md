@@ -1,6 +1,6 @@
-# Anvl - 0.0.1
+## Anvl - 0.0.1
 
-Anvl is a command-line tool designed to reduce **setup friction** and **mental load** when working on **C** projects, especially in strict or/and educational environments like Epitech or 42 school.
+Anvl is a command-line tool designed to reduce **setup friction** and **mental load** when working on **C** projects, especially in strict or/and educational environments like **Epitech** or **42** school.
 
 It focuses on three things:
 - Fast project initialization
