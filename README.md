@@ -1,50 +1,110 @@
-## Anvl - 0.0.1
+# Anvl — v0.0.1
 
-Anvl is a command-line tool designed to reduce **setup friction** and **mental load** when working on **C** projects, especially in strict or/and educational environments like **Epitech** or **42** school.
+**Anvl** is a command-line tool built to reduce **setup friction** and **mental load** when working on **C projects**, especially in **strict or educational environments** like **Epitech** or **42**.
 
-It focuses on three things:
+It focuses on three core ideas:
 
-- Fast project initialization
-- Safe, explicit module reuse
-- Kepping your build system honest.
+* **Fast project initialization**
+* **Safe, explicit module reuse**
+* **Keeping your build system honest**
 
-> No magic. No code generators. Only automation and structure.
+> **No magic. No code generation.**
+> Just automation, structure, and transparency.
 
-## Why did I even create Anvl ?
+---
 
-C projects tend to repeat exactly the same problems:
+## Why Anvl exists
 
-- With 2 to 4 weeks to deliver a project, often while juggling several projects at the same time, you can’t afford to lose hours setting up the same structure again and again.
-- Writing your own library is usually a good idea, but reusing it blindly isn’t. Most projects only need a few functions, and you still have to ensure that every reused feature respects the authorized functions defined by the subject.
-- Editing a Makefile isn’t hard, but it’s mental overhead. The cleaner solution is not having to even think about it at all.
+If you’ve worked on C projects for any amount of time, you’ve probably hit the same walls over and over:
 
-## What Anvl is not
+* **Short deadlines, stacked projects**
+  With 2–4 weeks per project (often several at once), wasting hours recreating the same structure is not an option.
 
-- Not a build system
-- Not a dependency resolver at compile time
-- Not a framework
-- Not a package manager that hides code
+* **Library reuse is useful… until it isn’t**
+  Writing your own library is great—but reusing it blindly isn’t.
+  Most projects only need *a subset* of functions, and every reused feature still needs to comply with the subject’s authorized functions.
 
-It works with your existing workflow, not against it.
+* **Makefiles aren’t hard, just exhausting**
+  Editing a Makefile isn’t complicated—but it *is* constant mental overhead.
+  The best solution is not having to think about it at all.
 
-## Typical project creation workflow
+Anvl exists to remove these frictions **without hiding what’s really happening**.
 
-`anvl init bin my_project --push`
-  -> Fetch "bin" template from your Anvl repo and rename binary, include etc to "my_project"
+---
 
-`anvl list`
-  -> List every available modules from your Anvl repo local cache.
+## What Anvl is *not*
 
-`anvl install io str vec --push`
-  -> Install "io", "str" and "vec" with all their dependencies from your Anvl repo to the current project
+Anvl is intentionally limited. It does **not** try to be:
 
-`anvl create c:cli modules/cli/cli --push`
-  -> Create "cli.c" inside src/modules/cli using the "C" template named "cli" inside your Anvl repo.
-     Create "cli.c" inside tests/modules/cli using the global test template or if defined the personalizated one.
-     Automatically add both file inside compilation Makefile, ready to use.
+* ❌ A build system
+* ❌ A compile-time dependency resolver
+* ❌ A framework
+* ❌ A package manager that hides source code
+
+Anvl works **with** your existing workflow, not **against** it.
+
+---
+
+## Typical workflow
+
+### Initialize a project
+
+```sh
+anvl init bin my_project --push
+```
+
+→ Fetches the `bin` template from your Anvl repository
+→ Renames the binary, includes, and structure to `my_project`
+→ Optionally commits and pushes the result
+
+---
+
+### List available modules
+
+```sh
+anvl list
+```
+
+→ Lists every module available in your **local Anvl repository cache**
+
+---
+
+### Install modules
+
+```sh
+anvl install io str vec --push
+```
+
+→ Installs `io`, `str`, and `vec`
+→ Automatically resolves and installs their dependencies
+→ Copies the code directly into the project (nothing hidden)
+
+---
+
+### Create files from templates
+
+```sh
+anvl create c:cli modules/cli/cli --push
+```
+
+→ Creates `cli.c` in `src/modules/cli` using the `c:cli` template
+→ Creates a matching test file in `tests/modules/cli`
+
+* Uses a project-specific test template if available
+* Falls back to the global test template otherwise
+  → Automatically adds both files to the Makefile
+  → Ready to compile, ready to test
+
+---
 
 > [!INFO]
+> Some commands accept the `--push` flag.
 >
-> As you can see, some commands have the --push option, it simply mean that Anvl will automatically push concerned changes on your repo. 
->
-> This is only the visible part of the iceberg to learn more about it, refere too : ...
+> When enabled, Anvl automatically commits and pushes the affected changes to your repository.
+
+---
+
+This is only the **visible tip of the iceberg**.
+To understand how Anvl enforces structure, safety, and consistency, refer to:
+
+👉 **HOW**
