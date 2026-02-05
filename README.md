@@ -1,4 +1,4 @@
-# Anvl — v0.0.1
+## Anvl — v0.0.1
 
 **Anvl** is a command-line tool built to reduce **setup friction** and **mental load** when working on **C projects**, especially in **strict or educational environments** like **Epitech** or **42**.
 
@@ -10,8 +10,6 @@ It focuses on three core ideas:
 
 > **No magic. No code generation.**
 > Just automation, structure, and transparency.
-
----
 
 ## Why Anvl exists
 
