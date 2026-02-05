@@ -15,7 +15,7 @@ It focuses on three core ideas:
 
 ## Why Anvl exists
 
-If you’ve worked on C projects for any amount of time, you’ve probably hit the same walls over and over:
+If you’ve worked on C projects at school for any amount of time, you’ve probably hit the same walls over and over:
 
 * **Short deadlines, stacked projects**
   With 2–4 weeks per project (often several at once), wasting hours recreating the same structure is not an option.
@@ -30,8 +30,6 @@ If you’ve worked on C projects for any amount of time, you’ve probably hit t
 
 Anvl exists to remove these frictions **without hiding what’s really happening**.
 
----
-
 ## What Anvl is *not*
 
 Anvl is intentionally limited. It does **not** try to be:
@@ -42,8 +40,6 @@ Anvl is intentionally limited. It does **not** try to be:
 * ❌ A package manager that hides source code
 
 Anvl works **with** your existing workflow, not **against** it.
-
----
 
 ## Typical workflow
 
@@ -57,8 +53,6 @@ anvl init bin my_project --push
 → Renames the binary, includes, and structure to `my_project`
 → Optionally commits and pushes the result
 
----
-
 ### List available modules
 
 ```sh
@@ -66,8 +60,6 @@ anvl list
 ```
 
 → Lists every module available in your **local Anvl repository cache**
-
----
 
 ### Install modules
 
@@ -78,8 +70,6 @@ anvl install io str vec --push
 → Installs `io`, `str`, and `vec`
 → Automatically resolves and installs their dependencies
 → Copies the code directly into the project (nothing hidden)
-
----
 
 ### Create files from templates
 
@@ -95,14 +85,10 @@ anvl create c:cli modules/cli/cli --push
   → Automatically adds both files to the Makefile
   → Ready to compile, ready to test
 
----
-
-> [!INFO]
+> [!NOTE]
 > Some commands accept the `--push` flag.
 >
 > When enabled, Anvl automatically commits and pushes the affected changes to your repository.
-
----
 
 This is only the **visible tip of the iceberg**.
 To understand how Anvl enforces structure, safety, and consistency, refer to:
