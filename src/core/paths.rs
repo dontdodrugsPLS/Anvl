@@ -1,5 +1,5 @@
 use crate::core::config::Config;
-use std::path::PathBuf;
+use std::{fs, path::PathBuf};
 
 #[derive(Debug, Clone)]
 pub struct ProjectPaths {
@@ -33,4 +33,22 @@ pub fn resolve_project_paths() -> Result<ProjectPaths, String> {
         "not inside an Anvl project (anvl.lock.json not found in directory and all his parents)"
             .to_string(),
     )
+}
+
+pub fn get_cache_paths() -> Result<CachePaths, String> {
+    let cfg = Config::get()?;
+
+    fs::create_dir_all(&cfg.anvl_storage_path).map_err(|e| {
+        format!(
+            "failed to create '{}': {e}",
+            cfg.anvl_storage_path.display()
+        )
+    })?;
+
+    let repo_dir = cfg.anvl_storage_path.join("repo");
+
+    Ok(CachePaths {
+        storage_root: cfg.anvl_storage_path,
+        repo_dir: repo_dir,
+    })
 }
