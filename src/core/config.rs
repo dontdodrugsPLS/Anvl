@@ -4,7 +4,7 @@ use std::{fs, path::PathBuf};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Config {
     pub repo: String,
-    pub anvl_storage_path: String,
+    pub anvl_storage_path: PathBuf,
     pub always_push: bool,
 }
 
@@ -12,7 +12,7 @@ impl Default for Config {
     fn default() -> Self {
         Self {
             repo: String::new(),
-            anvl_storage_path: String::new(),
+            anvl_storage_path: PathBuf::new(),
             always_push: false,
         }
     }
@@ -58,7 +58,7 @@ impl Config {
 
         match key.as_str() {
             "repo" => config.repo = value.to_string(),
-            "anvl_storage_path" => config.anvl_storage_path = value.to_string(),
+            "anvl_storage_path" => config.anvl_storage_path = PathBuf::from(value),
             "always_push" => {
                 config.always_push = value
                     .parse::<bool>()
