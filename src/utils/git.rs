@@ -22,7 +22,9 @@ fn run(args: &[&str], cwd: Option<&Path>) -> Result<String, String> {
 }
 
 pub fn is_available() -> Result<(), String> {
-    run(&["--version"], None).map(|_| ())
+    run(&["--version"], None)
+        .map(|_| ())
+        .map_err(|e| format!("git is required but not available: {e}"))
 }
 
 pub fn clone(repo_url: &str, dest: &Path) -> Result<(), String> {
@@ -35,16 +37,22 @@ pub fn clone(repo_url: &str, dest: &Path) -> Result<(), String> {
         None,
     )
     .map(|_| ())
+    .map_err(|e| format!("failed to clone repository '{repo_url}': {e}"))
 }
 
 pub fn fetch_all(repo_dir: &Path) -> Result<(), String> {
-    run(&["fetch", "--all", "--prune"], Some(repo_dir)).map(|_| ())
+    run(&["fetch", "--all", "--prune"], Some(repo_dir))
+        .map(|_| ())
+        .map_err(|e| format!("failed to fetch updates: {e}"))
 }
 
 pub fn reset_hard(repo_dir: &Path, ref_name: &str) -> Result<(), String> {
-    run(&["reset", "--hard", ref_name], Some(repo_dir)).map(|_| ())
+    run(&["reset", "--hard", ref_name], Some(repo_dir))
+        .map(|_| ())
+        .map_err(|e| format!("failed to reset repository to '{ref_name}': {e}"))
 }
 
 pub fn current_commit(repo_dir: &Path) -> Result<String, String> {
     run(&["rev-parse", "HEAD"], Some(repo_dir))
+        .map_err(|e| format!("failed to get current commit: {e}"))
 }
