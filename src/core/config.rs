@@ -3,9 +3,9 @@ use std::{fs, path::PathBuf};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Config {
-    repo: String,
-    anvl_storage_path: String,
-    always_push: bool,
+    pub repo: String,
+    pub anvl_storage_path: String,
+    pub always_push: bool,
 }
 
 impl Default for Config {
