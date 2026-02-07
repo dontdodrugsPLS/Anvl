@@ -1,4 +1,5 @@
 mod cache;
+mod config;
 
 use crate::cli::args::{Args, Command};
 
