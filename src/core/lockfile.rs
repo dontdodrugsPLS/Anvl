@@ -25,9 +25,7 @@ impl Lockfile {
             modules: std::collections::HashMap::new(),
         }
     }
-}
 
-impl Lockfile {
     pub fn write_to(&self, root: &Path) -> Result<(), String> {
         let path = root.join("anvl.lock.json");
         let json = serde_json::to_string_pretty(self)
@@ -36,9 +34,7 @@ impl Lockfile {
         fs::write(&path, json).map_err(|e| format!("failed to write lockfile: {e}"))?;
         Ok(())
     }
-}
 
-impl Lockfile {
     pub fn read_from(root: &Path) -> Result<Self, String> {
         let path = root.join("anvl.lock.json");
         let data =
@@ -48,9 +44,7 @@ impl Lockfile {
 
         Ok(lockfile)
     }
-}
 
-impl Lockfile {
     pub fn validate(&self) -> Result<(), String> {
         if self.lock_version != 1 {
             return Err(format!(
