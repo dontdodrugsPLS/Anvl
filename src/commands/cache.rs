@@ -12,7 +12,7 @@ pub fn dispatch(action: CacheAction, verbose: bool) -> Result<(), String> {
     }
 }
 
-pub fn cmd_update(verbose: bool) -> Result<(), String> {
+fn cmd_update(verbose: bool) -> Result<(), String> {
     let cfg = Config::get()?;
     let anvl_storage = paths::get_cache_paths()?;
 
@@ -26,7 +26,7 @@ pub fn cmd_update(verbose: bool) -> Result<(), String> {
     Ok(())
 }
 
-pub fn cmd_clean(verbose: bool) -> Result<(), String> {
+fn cmd_clean(verbose: bool) -> Result<(), String> {
     let anvl_storage = paths::get_cache_paths()?;
 
     if anvl_storage.repo_dir.exists() {
