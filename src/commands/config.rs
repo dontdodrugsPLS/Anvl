@@ -11,16 +11,15 @@ pub fn dispatch(cmd: &ConfigCommand) -> Result<(), String> {
 fn cmd_get() -> Result<(), String> {
     let cfg = Config::get()?;
 
-    println!("Anvl configuration:");
+    println!("Anvl configuration:\n");
     println!("  repo -> {}", cfg.repo);
-    println!(
-        "   anvl_storage_path -> {}",
-        cfg.anvl_storage_path.display()
-    );
+    println!("  anvl_storage_path -> {}", cfg.anvl_storage_path.display());
     println!("  always_push -> {}", cfg.always_push);
     Ok(())
 }
 
 fn cmd_set(key: &str, value: &str) -> Result<(), String> {
+    Config::set(key.to_string(), value.to_string())?;
+    println!("config updated: {key} -> {value}");
     Ok(())
 }
